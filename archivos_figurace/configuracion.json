@@ -1,0 +1,32 @@
+[
+    {
+        "facil": {
+            "tiempo": "60s",
+            "cant_rondas": 3,
+            "punt_sum_resp": 40,
+            "punt_res_resp": 5,
+            "cant_car_mostrar": 5
+        },
+        "normal": {
+            "tiempo": "30s",
+            "cant_rondas": 5,
+            "punt_sum_resp": 30,
+            "punt_res_resp": 10,
+            "cant_car_mostrar": 4
+        },
+        "dificil": {
+            "tiempo": "20s",
+            "cant_rondas": 7,
+            "punt_sum_resp": 20,
+            "punt_res_resp": 15,
+            "cant_car_mostrar": 3
+        },
+        "experto": {
+            "tiempo": "15s",
+            "cant_rondas": 10,
+            "punt_sum_resp": 10,
+            "punt_res_resp": 20,
+            "cant_car_mostrar": 2
+        }
+    }
+]

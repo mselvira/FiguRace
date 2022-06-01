@@ -1,0 +1,27 @@
+[
+    {
+        "Nombre": "a",
+        "Edad": "32",
+        "Genero": "f"
+    },
+    {
+        "Nombre": "g",
+        "Edad": "32",
+        "Genero": "f"
+    },
+    {
+        "Nombre": "p",
+        "Edad": "55",
+        "Genero": "m"
+    },
+    {
+        "Nombre": "Ingrese su nombre",
+        "Edad": "Ingrese su edad",
+        "Genero": "Ingrese su genero autopercibido"
+    },
+    {
+        "Nombre": "h",
+        "Edad": "Ingrese su edad",
+        "Genero": "Ingrese su genero autopercibido"
+    }
+]

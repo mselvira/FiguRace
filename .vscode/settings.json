@@ -1,0 +1,5 @@
+{
+    "python.analysis.extraPaths": [
+        "./scripts/interfaces_graficas/menu_inicio"
+    ]
+}
