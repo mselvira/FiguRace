@@ -1,0 +1,14 @@
+{
+    "martin": {
+        "Edad": "25",
+        "Genero": "m"
+    },
+    "juan": {
+        "Edad": "66",
+        "Genero": "f"
+    },
+    "gabi": {
+        "Edad": "26",
+        "Genero": "m"
+    }
+}

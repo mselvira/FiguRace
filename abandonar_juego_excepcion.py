@@ -1,0 +1,2 @@
+class AbandonarJuegoExcepcion(Exception):
+    pass

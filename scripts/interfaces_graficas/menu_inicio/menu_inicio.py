@@ -19,14 +19,16 @@ from perfil import ventana_perfil
 from pantalla_juego import ventana_juego
 from pantalla_configuracion import ventana_configuracion
 from pantalla_puntajes import ventana_puntajes
+from config import PERFILES_PATH
 
 #Preguntar lo de los combo-box...
 #Ejemplo que hizo el profe...
 #DIR_FILES = os.path.abspath(os.path.join(__file__, '..', '..','..','..','data_sets'))
 #print(os.path.join(DIR_FILES, 'prueba.csv'))
 
-ARCHIVOS_FIGURACE = os.path.abspath(os.path.join(__file__, '..', '..','..','..','archivos_figurace'))
-archivo_perfiles=os.path.join(ARCHIVOS_FIGURACE, 'perfiles.json')
+# ARCHIVOS_FIGURACE = os.path.abspath(os.path.join(__file__, '..', '..','..','..','archivos_figurace'))
+ 
+archivo_perfiles=os.path.join(PERFILES_PATH, 'perfiles.json')
 
 def crear_ventana_menu():    
     sg.theme("Reddit")
@@ -50,7 +52,7 @@ def crear_ventana_menu():
           #[sg.OptionMenu(values=["Muy dificil","Dificil","Normal","Facil"],default_value="Facil" ,size=(30,1),key="-MENU-DIFICULTAD-")]
     ]
     layout=[
-            [sg.Text("FiguRace",justification="center",expand_x=True)],
+            [sg.Text("FiguRace",justification="center",expand_x=True,text_color="black")],
             [sg.Column(col1,justification="center",expand_x=True,vertical_alignment="center"),sg.Column(col2,expand_y=True)]
     ]
     return sg.Window("Menu de inicio",layout=layout,margins=(100,100),finalize=True)
@@ -59,11 +61,12 @@ def cargar_nombres():
     #esto no funciona correctamente,no carga los perfiles adecuadamente
     try:
         with open(archivo_perfiles,"r") as archivo:
-            lista_dic=json.load(archivo)
+            dicc=json.load(archivo)
     except IOError:
         sg.Popup("No hay perfiles cargados,por favor cree un perfil para comenzar el juego...")        
     else:
-        nombres=[dic["Nombre"] for dic in lista_dic]
+        # nombres=[dic["Nombre"] for dic in lista_dic]
+        nombres=[nombre for nombre in dicc.keys()]
         #print(nombres) 
         return nombres 
 
@@ -104,11 +107,15 @@ def cargar_nombres():
 #             ventana_perfil()
 #     ventana_menu.close()
 
-
+def recuperar_genero(nombre):
+    with open(archivo_perfiles) as arch_perfiles:
+        datos=json.load(arch_perfiles)
+    return datos[nombre]["Genero"]    
 
 
 def ventana_menu():      
-    ventana_menu,ventana_conf=crear_ventana_menu(),None
+    #ventana_menu,ventana_conf=crear_ventana_menu(),None
+    ventana_menu=crear_ventana_menu()
     dificultad_por_defecto="Facil"
     dicc_dificultad_defecto={
         "tiempo": "60s",
@@ -117,6 +124,7 @@ def ventana_menu():
         "punt_res_resp": 5,
         "cant_car_mostrar": 5
     }
+     
     boton_configuracion=False
     while True:
         #aca cargo los nombres   
@@ -136,16 +144,18 @@ def ventana_menu():
             elif(boton_configuracion):
                 if(not dificultad):
                     sg.Popup("Va a jugar con la configuracion por defecto porque no eligio una configuracion")
-                    ventana_juego(values["-LISTA-NOMBRES-"],dificultad_por_defecto,dicc_dificultad_defecto,dicc_dificultad_defecto["cant_car_mostrar"])
+                    ventana_juego(values["-LISTA-NOMBRES-"],dificultad_por_defecto,dicc_dificultad_defecto)
                 else:
-                    ventana_juego(values["-LISTA-NOMBRES-"],dificultad,dicc_dificultad,dicc_dificultad["cant_car_mostrar"])
+                    ventana_juego(values["-LISTA-NOMBRES-"],dificultad,dicc_dificultad)
                     boton_configuracion=False        
             else:
                 sg.Popup("Va a jugar con la configuracion por defecto porque no eligio una configuracion")
-                ventana_juego(values["-LISTA-NOMBRES-"],dificultad_por_defecto,dicc_dificultad_defecto,dicc_dificultad_defecto["cant_car_mostrar"])    
+                genero=recuperar_genero(values["-LISTA-NOMBRES-"])
+                ventana_juego(values["-LISTA-NOMBRES-"],genero,dificultad_por_defecto,dicc_dificultad_defecto)    
         elif(event=="-BOTON-PUNTAJES-"):
             print("Boton de puntaje")
-        elif(event=="-BOTON-PERFIL-"):  
+            ventana_puntajes()
+        elif(event=="-BOTON-PERFIL-"):     
             ventana_perfil()
     ventana_menu.close()
 

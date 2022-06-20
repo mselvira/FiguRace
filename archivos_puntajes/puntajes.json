@@ -1,0 +1,32 @@
+{
+    "Facil": {
+        "martin": {
+            "puntaje": 165,
+            "rondas_jugadas": 11
+        },
+        "juan": {
+            "puntaje": 30,
+            "rondas_jugadas": 1
+        },
+        "gabi": {
+            "puntaje": 15,
+            "rondas_jugadas": 2
+        }
+    },
+    "Dificil": {
+        "martin": {
+            "puntaje": 0,
+            "rondas_jugadas": 1
+        }
+    },
+    "Normal": {
+        "juan": {
+            "puntaje": -10,
+            "rondas_jugadas": 1
+        },
+        "gabi": {
+            "puntaje": 30,
+            "rondas_jugadas": 1
+        }
+    }
+}
